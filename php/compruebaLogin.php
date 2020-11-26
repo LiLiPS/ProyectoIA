@@ -19,6 +19,7 @@
             session_start();
             $_SESSION["usuario"] = $_POST["usuario"];
             $_SESSION["nombre"] = $registro["nombre"];
+            echo("Hola");
             $_SESSION["rol"] = $registro["id_rol"];
 
             if ($registro["id_rol"] == 1)

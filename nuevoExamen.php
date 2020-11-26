@@ -16,6 +16,8 @@
     <h4>Separe las palabras clave por comas (,).</h4>
 
     <form action="php/docente/crearExamen.php" method="POST">
+        <input type="text" name="nombreExamen" id="nombreExamen" placeholder="Nombre del Examen...">
+        <br>
         <input type="button" value="+" onClick="display()">
         <br>
         <div id="preguntas"></div>
