@@ -5,7 +5,9 @@
     $palabrasClave = [];
     $nombreExamen = $_POST["nombreExamen"];
 
-    for ($i=0; $i < (count($_POST) - 1) / 2; $i++) {
+    $grupo = $_POST["grupo"];
+
+    for ($i=0; $i < (count($_POST) - 2) / 2; $i++) {
         $preguntas[$i] = $_POST["p" . $i];
         $palabrasClave[$i] = $_POST["pc" . $i];
     }
@@ -34,6 +36,10 @@
         $resultado = $base->prepare($insertPalClave);
         $resultado->execute(array(":idP"=>$lastIDPregunta, ":pc"=>$palabrasClave[$i]));
     }
-    
+
+    $insertExamenGrupo = "INSERT INTO Examen_grupo (id_examen, id_grupo) VALUES (:idE, :idG)";
+    $resultado = $base->prepare($insertExamenGrupo);
+    $resultado->execute(array(":idE"=>$lastIDExamen, ":idG"=>$grupo));
+
     header("Location:../../nuevoExamen.php");
 ?>

@@ -1,6 +1,6 @@
 var i = 0;
 
-function display() {
+function displayPreguntas() {
     contPreguntas = document.getElementById("preguntas");
 
     pregunta = document.createElement("input");
@@ -20,4 +20,8 @@ function display() {
     contPreguntas.appendChild(palClave);
     contPreguntas.appendChild(salto);
     i++;
+}
+
+function displayRespuestas() {
+    
 }

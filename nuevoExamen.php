@@ -2,6 +2,10 @@
     session_start();
     if (!isset($_SESSION["usuario"]) || $_SESSION["rol"] != 1)
         header("location:login.php");
+
+    include("php/conexion.php");
+    $conexion = $base->query("SELECT * FROM Grupo");
+    $grupos = $conexion->fetchAll(PDO::FETCH_OBJ);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +21,14 @@
 
     <form action="php/docente/crearExamen.php" method="POST">
         <input type="text" name="nombreExamen" id="nombreExamen" placeholder="Nombre del Examen...">
+        <label for="grupo">Grupo: </label>
+        <select name="grupo" id="grupo">
+            <?php foreach($grupos as $grupo): ?>
+                <option value="<?php echo($grupo->id_grupo) ?>"><?php echo($grupo->nombre) ?></option>
+            <?php endforeach; ?>
+        </select>
         <br>
-        <input type="button" value="+" onClick="display()">
+        <input type="button" value="+" onClick="displayPreguntas()">
         <br>
         <div id="preguntas"></div>
         <input type="submit" value="Crear">
